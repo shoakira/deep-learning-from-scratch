@@ -1,6 +1,11 @@
 # coding: utf-8
 import sys, os
-sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
+# 現在のファイルの絶対パスを取得
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# プロジェクトのルートディレクトリを設定
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+
 import numpy as np
 from dataset.mnist import load_mnist
 from PIL import Image

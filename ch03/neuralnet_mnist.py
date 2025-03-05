@@ -1,6 +1,11 @@
 # coding: utf-8
 import sys, os
-sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
+# 現在のファイルの絶対パスを取得
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# プロジェクトのルートディレクトリを設定
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)  # 親ディレクトリのファイルをインポートするための設定
+
 import numpy as np
 import pickle
 from dataset.mnist import load_mnist
@@ -13,7 +18,9 @@ def get_data():
 
 
 def init_network():
-    with open("sample_weight.pkl", 'rb') as f:
+    # 絶対パスでモデルファイルを指定
+    file_path = os.path.join(current_dir, "sample_weight.pkl")
+    with open(file_path, 'rb') as f:
         network = pickle.load(f)
     return network
 
